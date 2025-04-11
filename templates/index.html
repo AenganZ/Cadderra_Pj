@@ -1,0 +1,768 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 쿠키 동의 여부 확인
+    var cookieConsent = localStorage.getItem('cookieConsent');
+    
+    if (!cookieConsent) {
+      // 쿠키 동의가 없으면 모달 표시
+      var cookieModal = new bootstrap.Modal(document.getElementById('cookieModal'));
+      cookieModal.show();
+      
+      // 모든 버튼에 이벤트 리스너 추가
+      document.getElementById('acceptAllBtn').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+      });
+      
+      document.getElementById('rejectAllBtn').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'rejected');
+      });
+      
+      document.getElementById('saveSettingsBtn').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'customized');
+      });
+    }
+  });
+</script>
+
+<!-- ======= hero Section ======= -->
+<section id="hero">
+  <div class="hero-container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <ol id="hero-carousel-indicators" class="carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <div class="carousel-item active" style="background-image: url({% static 'assets/img/hero-carousel/1.jpg' %})">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">통화 중, 전원이 꺼졌을 때</h2>
+              <p class="animate__animated animate__fadeInUp">받지 못한 전화<br>문자로 알려드려요</p>
+              <a href="{% url 'service5' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">바로가기</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url({% static 'assets/img/hero-carousel/2.jpg' %})">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">귀찮은 건 줄고, 편안함은 더 커진</h2>
+              <p class="animate__animated animate__fadeInUp">스마트한 디지털 생활 <br>스팸 차단 서비스</p>
+              <a href="{% url 'service4' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">바로가기</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" style="background-image: url({% static 'assets/img/hero-carousel/3.jpg' %})">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">5G 데이터 무제한 + C 멤버십 VIP + 뭐라노패스 <strong>50%</strong> 할인</h2>
+              <p class="animate__animated animate__fadeInUp">요금 결합은 간단하게, <br> 할인은 더 많이!</p>
+              <a href="{% url 'chatbot' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">바로가기</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </div>
+</section><!-- End Hero Section -->
+
+<main id="main">
+
+  <!-- ======= About Section ======= -->
+  <div id="about" class="about-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>About Cadderra</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single-well start-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-left">
+            <div class="single-well">
+              <a href="#">
+                <img src="{% static 'assets/img/about/1.jpg' %}" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- single-well end-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-middle">
+            <div class="single-well">
+              <a href="#">
+                <h4 class="sec-head">CADDERRA REVOLUTION</h4>
+              </a>
+              <p>
+                <strong>혁신적인 기술로 미래를 선도한다 카더라</strong>
+              </p>
+              <ul>
+                <li>
+                  <i class="bi bi-check"></i> 맞춤형 요금제: 고객의 사용 패턴에 최적화된 다양한 요금제 옵션
+                </li>
+                <li>
+                  <i class="bi bi-check"></i> IPTV 서비스: 고화질 콘텐츠와 맞춤형 추천 시스템을 갖춘 엔터테인먼트 플랫폼
+                </li>
+                <li>
+                  <i class="bi bi-check"></i> AI 챗봇 'CADDERRA': 24/7 고객 지원 및 개인화된 서비스 추천
+                </li>
+                <li>
+                  <i class="bi bi-check"></i> 스마트 홈 솔루션: IoT 기기 연동 및 원격 제어 시스템
+                </li>
+                <li>
+                  <i class="bi bi-check"></i> 고급 스팸차단 서비스: AI 기반 지능형 스팸 및 피싱 방지 기술
+                </li>
+                <li>
+                  <i class="bi bi-check"></i> 폰 안심패스: 기기 분실, 파손에 대한 종합적인 보호 서비스
+                </li>
+                <li>
+                  <i class="bi bi-check"></i> 프리미엄 멤버십: VIP 고객을 위한 특별 혜택 및 우선 서비스
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End col-->
+      </div>
+    </div>
+  </div><!-- End About Section -->
+
+  <!-- ======= Services Section ======= -->
+  <div id="services" class="services-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline services-head text-center">
+            <h2>Our Services</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <!-- Start Left services -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="about-move">
+            <div class="services-details">
+              <div class="single-services">
+                <a class="services-icon" href="{% url 'service1' %}">
+                  <i class="bi bi-shield-check"></i>
+                </a>
+                <h4>폰 안심패스</h4>
+                <p>
+                  This innovative program analyzes various risk factors and offers tailored coverage for loss, theft, accidental damage, and water damage. With features like same-day replacement, battery replacement support, and 24/7 customer service, Phone Safety Pass ensures that your mobile lifestyle remains uninterrupted.
+                </p>
+              </div>
+            </div>
+            <!-- end about-details -->
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="about-move">
+            <div class="services-details">
+              <div class="single-services">
+                <a class="services-icon" href="{% url 'chatbot' %}">
+                  <i class="bi bi-card-checklist"></i>
+                </a>
+                <h4>Chat Bot CADDERRA</h4>
+                <p>
+                  Chatbot CADDERRA is an innovative AI-powered virtual assistant designed to revolutionize the way you choose your mobile plan. As a cutting-edge recommendation system, CADDERRA leverages advanced artificial intelligence to analyze your unique usage patterns, preferences, and needs.
+                </p>
+              </div>
+            </div>
+            <!-- end about-details -->
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <!-- end col-md-4 -->
+          <div class=" about-move">
+            <div class="services-details">
+              <div class="single-services">
+                <a class="services-icon" href="{% url 'service3' %}">
+                  <i class="bi bi-house-add"></i>
+                </a>
+                <h4>SmartHome</h4>
+                <p>
+                  Our Smart Home ecosystem seamlessly integrates various devices and systems in your home, all controllable through a single, user-friendly app. From intelligent lighting and climate control to advanced security systems and energy management, we offer a comprehensive suite of solutions tailored to your lifestyle.
+                </p>
+              </div>
+            </div>
+            <!-- end about-details -->
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <!-- end col-md-4 -->
+          <div class=" about-move">
+            <div class="services-details">
+              <div class="single-services">
+                <a class="services-icon" href="{% url 'service4' %}">
+                  <i class="bi bi-ban"></i>
+                </a>
+                <h4>스팸 차단 서비스</h4>
+                <p>
+                  In today's digital age, unwanted calls and messages can be more than just a nuisance – they can pose serious risks to your privacy and security. Our Advanced Spam Blocking Service is designed to give you peace of mind and control over your communications.
+                </p>
+              </div>
+            </div>
+            <!-- end about-details -->
+          </div>
+        </div>
+        <!-- End Left services -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <!-- end col-md-4 -->
+          <div class=" about-move">
+            <div class="services-details">
+              <div class="single-services">
+                <a class="services-icon" href="{% url 'service5' %}">
+                  <i class="bi bi-telephone-plus"></i>
+                </a>
+                <h4>뭐라카더라 플러스 알파</h4>
+                <p>
+                  In today's fast-paced world, staying connected is crucial. Our Missed Call Alert Service ensures that you're always in the loop, even when you can't answer your phone. This innovative service is designed to keep you informed of all your missed calls, no matter where you are or what you're doing.
+                </p>
+              </div>
+            </div>
+            <!-- end about-details -->
+          </div>
+        </div>
+        <!-- End Left services -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <!-- end col-md-4 -->
+          <div class=" about-move">
+            <div class="services-details">
+              <div class="single-services">
+                <a class="services-icon" href="{% url 'service6' %}">
+                  <i class="bi bi-tv"></i>
+                </a>
+                <h4>보더라 TV</h4>
+                <p>
+                  Our IPTV service brings a world of entertainment to your fingertips, seamlessly integrating with your Smart Home ecosystem. With a vast selection of channels, on-demand content, and interactive features, our IPTV service offers a premium viewing experience.
+
+                </p>
+              </div>
+            </div>
+            <!-- end about-details -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Services Section -->
+
+  <!-- ======= Rviews Section ======= -->
+  <div class="reviews-area">
+    <div class="row g-0">
+      <div class="col-lg-6">
+        <img src="{% static 'assets/img/about/2.jpg' %}" alt="" class="img-fluid">
+      </div>
+      <div class="col-lg-6 work-right-text d-flex align-items-center">
+        <div class="px-5 py-5 py-lg-0">
+          <h2>working with us</h2>
+          <h5>Provide internet connectivity services, maintain communication infrastructure, and offer telecommunications technology and services to customers.</h5>
+          <a href="#contact" class="ready-btn scrollto">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Rviews Section -->
+
+  <!-- ======= Pricing Section ======= -->
+  <div id="pricing" class="pricing-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>월간 BEST 스마트폰 요금제</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="pri_table_list active">
+            <span class="saleon">&nbsp&nbsp&nbsp2등</span>
+            <h3>5G 혜자라 카더라 <strong>40</strong> <br /> <span>40,000(원) / month</span></h3>
+            <ol>
+              <li class="check"><i class="bi bi-check"></i><span>5G 데이터 <strong>30GB</strong>제공</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>집/이동전화 <strong>무제한</strong></span></li>
+              <li class="check"><i class="bi bi-check"></i><span>영상/부가통화 <strong>300분</strong>·문자 </span><strong>기본 제공(부가통화 300분)</strong></li>
+              <li class="check"><i class="bi bi-check"></i><span>C 멤버십 <strong>GOLD</strong> 혜택</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>뭐라노패스 <strong>최대 2,000원</strong> 할인</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>생활안심 서비스</span></li>
+              <li class="cross"><i class="bi bi-check"></i><span>로밍 이용 할인</span></li>
+              <li class="cross"><i class="bi bi-check"></i><span>스마트기기 1회선 이용 무료</span></li>
+            </ol>
+            <button><a href="{% url 'change_phone_plan' %}" class="button" style="color: white; text-decoration: none;">요금제 변경하기</a></button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="pri_table_list active">
+            <span class="saleon">&nbsp&nbsp&nbsp1등</span>
+            <h3>5G 대박이라 카더라 <strong>65</strong> <br /> <span>65,000(원) / month</span></h3>
+            <ol>
+              <li class="check"><i class="bi bi-check"></i><span>5G 데이터 <strong>무제한</strong></span></li>
+              <li class="check"><i class="bi bi-check"></i><span>집/이동전화 <strong>무제한</strong></span></li>
+              <li class="check"><i class="bi bi-check"></i><span>영상/부가통화 <strong>300분</strong>·문자 </span><strong>기본 제공(부가통화 600분)</strong></li>
+              <li class="check"><i class="bi bi-check"></i><span>C 멤버십 <strong>VIP</strong> 혜택</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>뭐라노패스 <strong>최대 50%</strong> 할인</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>생활안심 서비스</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>로밍 이용 30% 할인</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>스마트기기 1회선 이용 무료</span></li>
+            </ol>
+            <button><a href="{% url 'change_phone_plan' %}" class="button" style="color: white; text-decoration: none;">요금제 변경하기</a></button>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="pri_table_list active">
+            <span class="saleon">&nbsp&nbsp&nbsp3등</span>
+            <h3>5G 싸더라 카더라 <strong>25</strong> <br /> <span>25,000(원) / month</span></h3>
+            <ol>
+              <li class="check"><i class="bi bi-check"></i><span>5G 데이터 <strong>15GB</strong>제공</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>집/이동전화 <strong>무제한</strong></span></li>
+              <li class="check"><i class="bi bi-check"></i><span>영상/부가통화 <strong>300분</strong>·문자 </span><strong>기본 제공(부가통화 300분)</strong></li>
+              <li class="check"><i class="bi bi-check"></i><span>C 멤버십 <strong>SILVER</strong> 혜택</span></li>
+              <li class="check"><i class="bi bi-check"></i><span>생활안심 서비스</span></li>
+              <li class="cross"><i class="bi bi-check"></i><span>뭐라노패스 할인</span></li>
+              <li class="cross"><i class="bi bi-check"></i><span>로밍 이용 할인</span></li>
+              <li class="cross"><i class="bi bi-check"></i><span>스마트기기 1회선 이용 무료</span></li>
+            </ol>
+            <button><a href="{% url 'change_phone_plan' %}" class="button" style="color: white; text-decoration: none;">요금제 변경하기</a></button>
+          </div>
+        </div>
+
+        <!--- =======공유기 요금제 섹션========== -->
+        <div id="pricing" class="pricing-area area-padding">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section-headline text-center">
+                  <h2>월간 BEST 인터넷 요금제</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="pri_table_list active">
+                  <span class="saleon">&nbsp알뜰 요금</span>
+                  <h3>슬림하다 카더라<strong></strong> <br /> <span>39,600(원) / month</span></h3>
+                  <ol>
+                    <li class="check"><i class="bi bi-check"></i><span>약정할인(36개월)<strong>-17,600원 </strong>지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>카더라닷컴 단독 다이렉트 할인 <strong>-1,100원 지원</strong></span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>카더라닷컴 단독 알뜰할인 <strong>-2,750원</strong> 지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>핸드폰 결합 시 추가할인 <strong>-5,500원</strong> 지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>할인 후 총 납부금액<strong>    월 12,650원</strong></span></li>
+                  </ol>
+                  <button><a href="{% url 'change_phone_plan' %}" class="button" style="color: white; text-decoration: none;">요금제 변경하기</a></button>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="pri_table_list active">
+                  <span class="saleon">&nbsp최다 선택</span>
+                  <h3>갓성비라 카더라 <strong></strong> <br /> <span>46,200(원) / month</span></h3>
+                  <ol>
+                    <li class="check"><i class="bi bi-check"></i><span>약정할인(36개월)<strong>-13,200원 </strong>지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>카더라닷컴 단독 다이렉트 할인 <strong>-1,650원 지원</strong></span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>카더라닷컴 단독 알뜰할인 <strong>-3,000원</strong> 지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>핸드폰 결합 시 추가할인 <strong>-11,000원</strong> 지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>할인 후 총 납부금액<strong>    월 17,350원</strong></span></li>
+                  </ol>
+                  <button><a href="{% url 'change_phone_plan' %}" class="button" style="color: white; text-decoration: none;">요금제 변경하기</a></button>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="pri_table_list active">
+                  <span class="saleon">&nbsp최대 혜택</span>
+                  <h3>다들었다 카더라 <strong>M</strong> <br /> <span>77,000(원) / month</span></h3>
+                  <ol>
+                    <li class="check"><i class="bi bi-check"></i><span>약정할인(36개월)<strong>-35,200원 </strong>지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>카더라닷컴 단독 다이렉트 할인 <strong>-2,200원 지원</strong></span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>카더라닷컴 단독 알뜰할인 <strong>-3,300원</strong> 지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>핸드폰 결합 시 추가할인 <strong>-11,000원</strong> 지원</span></li>
+                    <li class="check"><i class="bi bi-check"></i><span>할인 후 총 납부금액<strong>    월 25,300원</strong></span></li>
+                  </ol>
+                  <button><a href="{% url 'change_phone_plan' %}" class="button" style="color: white; text-decoration: none;">요금제 변경하기</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Testimonials Section ======= -->
+  <div id="testimonials" class="testimonials">
+    <div class="container">
+
+      <div class="testimonials-slider swiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
+              <h3>Cho Sung-bae</h3>
+              <h4>Elder statesman and mentor in cybersecurity</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                CADDERRA's innovative approach is lighting the way for our industry's future.
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="{% static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
+              <h3>Park Hye-sook</h3>
+              <h4>Living legend in national information security policy</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                CADDERRA perfectly understands the balance between national security and personal privacy protection
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="{% static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
+              <h3>Kim Jae-hoon</h3>
+              <h4>Renowned professor and cryptography maestro</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                CADDERRA's encryption technology is truly remarkable. They're always one step ahead
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="{% static 'assets/img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
+              <h3>Lee Mi-ran</h3>
+              <h4>Top authority in corporate security consulting</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                Companies partnering with CADDERRA consistently receive the finest security solutions
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <img src="{% static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
+              <h3>Chung Dae-ho</h3>
+              <h4>Chair of the Information Security Policy Advisory Committee</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                CADDERRA is making significant contributions in harmonizing security technology with policy
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div><!-- End testimonial item -->
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+  </div><!-- End Testimonials Section -->
+
+  <!-- ======= Team Section ======= -->
+  <div id="team" class="our-team-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>Our special Team</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row team-row">
+        <div class="col-md-1-5 col-sm-3 col-xs-12">
+          <div class="single-team-member">
+            <div class="team-img">
+              <a href="#">
+                <img src="{% static 'assets/img/team/1.png' %}" alt="">
+              </a>
+              <div class="team-social-icon text-center">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/sumv__/">
+                      <i class="bi bi-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="team-content text-center">
+              <h4>Jhon Cena</h4>
+              <p>CEO</p>
+            </div>
+          </div>
+        </div>
+        <!-- End column -->
+        <div class="col-md-1-5 col-sm-3 col-xs-12">
+          <div class="single-team-member">
+            <div class="team-img">
+              <a href="#">
+                <img src="{% static 'assets/img/team/5.png' %}" alt="">
+              </a>
+              <div class="team-social-icon text-center">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/thinghwan0216/">
+                      <i class="bi bi-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="team-content text-center">
+              <h4>Raymond Kalson</h4>
+              <p>CISO</p>
+            </div>
+          </div>
+        </div>
+        <!-- End column -->
+        <div class="col-md-1-5 col-sm-3 col-xs-12">
+          <div class="single-team-member">
+            <div class="team-img">
+              <a href="#">
+                <img src="{% static 'assets/img/team/2.png' %}" alt="">
+              </a>
+              <div class="team-social-icon text-center">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/hyunsh_e/">
+                      <i class="bi bi-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="team-content text-center">
+              <h4>Sergio Ramos</h4>
+              <p>CPO</p>
+            </div>
+          </div>
+        </div>
+        <!-- End column -->
+        <div class="col-md-1-5 col-sm-3 col-xs-12">
+          <div class="single-team-member">
+            <div class="team-img">
+              <a href="#">
+                <img src="{% static 'assets/img/team/3.png' %}" alt="">
+              </a>
+              <div class="team-social-icon text-center">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/castanea02/">
+                      <i class="bi bi-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="team-content text-center">
+              <h4>Jamal Murray</h4>
+              <p>개인정보취급자</p>
+            </div>
+          </div>
+        </div>
+        <!-- End column -->
+        <div class="col-md-1-5 col-sm-3 col-xs-12">
+          <div class="single-team-member">
+            <div class="team-img">
+              <a href="#">
+                <img src="{% static 'assets/img/team/4.png' %}" alt="">
+              </a>
+              <div class="team-social-icon text-center">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.instagram.com/yeoep_/">
+                      <i class="bi bi-instagram"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="team-content text-center">
+              <h4>Charles Lee</h4>
+              <p>DBA</p>
+            </div>
+          </div>
+        </div>
+        <!-- End column -->
+      </div>
+    </div>
+  </div><!-- End Team Section -->
+
+  <!-- ======= Suscribe Section ======= -->
+  <div class="suscribe-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
+          <div class="suscribe-text text-center">
+            <h3>Welcome to our CADDERRA</h3>
+            <a class="sus-btn" href="#">Get A quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Suscribe Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <div id="contact" class="contact-area">
+    <div class="contact-inner area-padding">
+      <div class="contact-overly"></div>
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>Contact us</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Start contact icon column -->
+          <div class="col-md-4">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="bi bi-phone"></i>
+                <p>
+                  Call: +82 02 1234 5678<br>
+                  <span>Monday-Friday (9am-6pm)</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Start contact icon column -->
+          <div class="col-md-4">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="bi bi-envelope"></i>
+                <p>
+                  Email: cadderratelecom@gmail.com<br>
+                  <span>Web: www.cadderra.com</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Start contact icon column -->
+          <div class="col-md-4">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="bi bi-geo-alt"></i>
+                <p>
+                  21, Hangang-daero, Yongsan-gu<br>
+                  <span>Seoul, Republic of Korea</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <!-- Start Google Map -->
+          <div class="col-md-6">
+            <!-- Start Map -->
+            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAoQbIVQNoRHLsOGaEOAfG-fy3-Rng8w-I&q=place_id:ChIJq2Jic--ifDURjPxPsuoNmi0" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <!-- End Map -->
+          </div>
+          <!-- End Google Map -->
+
+          <!-- Start  contact -->
+          <div class="col-md-6">
+            <div class="form contact-form">
+              <form action="{% url 'contact' %}" method="post" onsubmit="console.log('Form submitted');">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group mt-3">
+                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="submit-button">SEND MESSAGE</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- End Left contact -->
+        </div>
+      </div>
+    </div>
+  </div><!-- End Contact Section -->
+
+</main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,389 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* 전체적인 스타일 개선 */
+    body {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+    .pricing {
+        background-color: #f9f9f9;
+        padding: 80px 0;
+    }
+    .section-title h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 40px;
+    }
+    .nav-tabs {
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .nav-tabs .nav-link {
+        border: none;
+        color: #666;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 15px 30px;
+        transition: all 0.3s ease;
+    }
+    .nav-tabs .nav-link.active {
+        color: #e60000;
+        border-bottom: 3px solid #e60000;
+    }
+    .plan-details, .benefits-section, .price-box, .main-features, .terms, .how-to-use {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    h3 {
+        color: #333;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+    .benefit-item, .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+    .benefit-item img, .feature-item img {
+        width: 50px;
+        margin-right: 20px;
+    }
+    .benefit-item h4, .feature-item h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    .benefit-item p, .feature-item p {
+        font-size: 14px;
+        color: #666;
+    }
+    .accordion-button {
+        font-weight: 600;
+        color: #333;
+    }
+    .accordion-button:not(.collapsed) {
+        color: #e60000;
+        background-color: #fff;
+    }
+    .subscription-info, .subscription-notes, .faq {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    .subscription-info h3, .subscription-notes h3, .faq h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .subscription-info table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+    .subscription-info th, .subscription-info td {
+        padding: 15px;
+        border: none;
+        background-color: #f9f9f9;
+    }
+    .subscription-info th {
+        font-weight: 600;
+        color: #333;
+    }
+    .subscription-notes ul, .faq ul, .terms ul, .how-to-use ol {
+        padding-left: 20px;
+    }
+    .subscription-notes li, .faq li, .terms li, .how-to-use li {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    .btn-primary {
+        background-color: #e60000;
+        border-color: #e60000;
+    }
+    .btn-primary:hover {
+        background-color: #cc0000;
+        border-color: #cc0000;
+    }
+    .price-highlight {
+        font-size: 24px;
+        font-weight: 700;
+        color: #e60000;
+        margin: 20px 0;
+    }
+    .cta {
+        background-color: #f0f0f0;
+        border-radius: 15px;
+        padding: 40px;
+    }
+    .bi-chevron-down {
+        transition: transform 0.3s ease;
+    }
+    [aria-expanded="true"] .bi-chevron-down {
+        transform: rotate(180deg);
+    }
+    .btn-primary {
+        background-color: #E96B56;
+        border-color: #E96B56;
+        color: #fff;
+    }
+    
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+        background-color: #e85542;
+        border-color: #e85542;
+        color: #fff;
+    }
+    .btn-primary {
+        border-radius: 30px;
+    }
+</style>
+
+<div id="blog" class="blog-area">
+  <div class="blog-inner area-padding">
+    <div class="blog-overly"></div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h1>&nbsp;</h1>
+            <h2>뭐라카더라 플러스 알파</h2>
+          </div>
+        </div>
+      </div>
+
+      <section id="pricing" class="pricing">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title"></div>
+          <ul class="nav nav-tabs mb-5" id="planTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">상세안내</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="subscription-tab" data-bs-toggle="tab" data-bs-target="#subscription" type="button" role="tab" aria-controls="subscription" aria-selected="false">가입/해지</button>
+            </li>
+          </ul>
+      
+          <div class="tab-content" id="planTabsContent">
+            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="price-box text-center">
+                    <p class="service-description"><strong>뭐라카더라와 통화녹음 기능 등 특별한 모바일 서비스가 가득한 이용 요금제는 '뭐라카더라 플러스 알파'입니다.</strong></p>
+                    <p class="price-highlight">월 11,000원 (부가세 포함)</p>
+                    <a href="#" class="btn btn-primary btn-lg mt-4">가입하기</a>
+                  </div>
+      
+                  <div class="main-features mt-5">
+                    <h3>주요기능 안내</h3>
+                    <ul class="feature-list">
+                      <li>
+                        <div>
+                          <h4>뭐라카더라 LTE/5G 요금제 가입자 혜택</h4>
+                          <p>뭐라카더라 LTE/5G 요금제 가입 고객에게 제공되는 통화 녹음 서비스입니다.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <h4>통화 녹음 데이터 관리는 CADDERRA에서</h4>
+                          <p>통화 녹음 데이터는 CADDERRA 웹에서 확인, 다운로드, 삭제 등 관리가 가능하며 최대 3개월간 보관됩니다.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <h4>통화 녹음 기능</h4>
+                          <p>발신 통화에 한해 통화 녹음 기능을 제공합니다.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+      
+                  <div class="accordion mt-5" id="pricingAccordion">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          이용요금 안내
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#pricingAccordion">
+                        <div class="accordion-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>구분</th>
+                                <th>이용요금(부가세 포함)</th>
+                                <th>비고</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>월정액</td>
+                                <td>11,000원</td>
+                                <td>뭐라카더라 LTE/5G 요금제 전용</td>
+                              </tr>
+                              <tr>
+                                <td>일차감</td>
+                                <td>366원</td>
+                                <td>월정액을 일할 계산하여 과금</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="terms mt-5">
+                    <h3>유의사항</h3>
+                    <ul>
+                      <li>뭐라카더라 LTE/5G 요금제 전용 부가서비스로, 해당 요금제 가입 고객만 이용 가능합니다.</li>
+                      <li>통화 녹음 기능은 발신 통화에 한해 제공되며, 수신 통화는 제공되지 않습니다.</li>
+                      <li>통화 녹음 데이터는 최대 3개월간 보관되며, 이후 자동 삭제됩니다.</li>
+                      <li>통화 녹음 시 상대방에게 통화 녹음 중임을 안내하는 멘트가 제공됩니다.</li>
+                      <li>통화 녹음 파일은 개인정보 보호를 위해 암호화되어 저장됩니다.</li>
+                    </ul>
+                  </div>
+      
+                  <div class="how-to-use mt-5">
+                    <h3>이용방법</h3>
+                    <ol>
+                      <li>CADDERRA 웹사이트에서 '뭐라카더라 플러스 알파' 서비스를 신청합니다.</li>
+                      <li>서비스 신청 후, 통화 시 자동으로 녹음이 시작됩니다.</li>
+                      <li>녹음된 통화는 CADDERRA 앱/웹에서 확인 및 관리할 수 있습니다.</li>
+                      <li>녹음된 통화를 재생, 다운로드, 삭제할 수 있습니다.</li>
+                      <li>필요한 경우 녹음된 통화를 다른 기기로 전송할 수 있습니다.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="tab-pane fade" id="subscription" role="tabpanel" aria-labelledby="subscription-tab">
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <div class="subscription-info mt-5">
+                    <h3 data-bs-toggle="collapse" data-bs-target="#subscriptionTable">
+                      가입/해지 방법 안내 <i class="bi bi-chevron-down"></i>
+                    </h3>
+                    <div id="subscriptionTable" class="collapse show">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>유형</th>
+                              <th>가입/해지 채널</th>
+                              <th>상세경로</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td rowspan="4">가입</td>
+                              <td>CADDERRA</td>
+                              <td>부가서비스 > 통화 > 부재중 통화 > 뭐라카더라 플러스 알파</td>
+                            </tr>
+                            <tr>
+                              <td>고객센터</td>
+                              <td>02-1234-5678 /<br>CADDERRA텔레콤 휴대폰으로 지역번호없이 114</td>
+                            </tr>
+                            <tr>
+                              <td>지점/대리점</td>
+                              <td>-</td>
+                            </tr>
+                            <tr>
+                              <td>모바일 고객센터</td>
+                              <td>-</td>
+                            </tr>
+                            <tr>
+                              <td rowspan="4">해지</td>
+                              <td>CADDERRA</td>
+                              <td>부가서비스 > 통화 > 부재중 통화 > 뭐라카더라 플러스 알파</td>
+                            </tr>
+                            <tr>
+                              <td>고객센터</td>
+                              <td>02-1234-5678 /<br>CADDERRA텔레콤 휴대폰으로 지역번호없이 114</td>
+                            </tr>
+                            <tr>
+                              <td>지점/대리점</td>
+                              <td>-</td>
+                            </tr>
+                            <tr>
+                              <td>모바일 고객센터</td>
+                              <td>-</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="subscription-notes mt-5">
+                    <h3 data-bs-toggle="collapse" data-bs-target="#subscriptionNotes">
+                      가입/해지 유의사항 <i class="bi bi-chevron-down"></i>
+                    </h3>
+                    <div id="subscriptionNotes" class="collapse show">
+                      <ul>
+                          <li>뭐라카더라 이용 중 뭐라카더라 플러스 알파 이용을 희망하시는 경우 뭐라카더라를 해지하신 후 뭐라카더라 플러스 알파에 가입하셔야 합니다.</li>
+                        <li>뭐라카더라 플러스 알파에 가입되어 있는 경우에 뭐라카더라만 별도로 사용하시기 위해서는 뭐라카더라 플러스 알파를 해지하신 후에 뭐라카더라에 가입하셔야 합니다.</li>
+                        <li>뭐라카더라에 저장된 발신번호정보는 뭐라카더라 서비스 해지 시에 삭제되오니 유의하시기 바랍니다.</li>
+                        <li>비정상적인 경로나 기기의 미완의 변동로 수신된 통화에 대해서는 뭐라카더라가 동작되지 않을 수 있습니다.</li>
+                        <li>일시정지 시 수신통화를 확인할 수 없는 기간 중에는 서비스 요금이 정상 부과됩니다.</li>
+                        <li>전원이 꺼진 상태에서 들어온 뭐라카더라 SMS의 경우 24시간 이내 건에 대해서는 전원이 켜졌을 때 SMS 수신 및 확인이 가능합니다.(단, 통화중, 음영지역(NPR), 배터리를 분리하여 수신이 불가한 상황에 대해서는 24시간 이내 건에 대해서만 SMS통보 가능함)</li>
+                        <li>통화가능통보서비스의 경우 전화 상대방이 CADDERRA텔레콤 고객인 경우에 한해 서비스가 제공되며, 번호변경안내 서비스에 대해서는 서비스가 제공되지 않습니다.</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div class="faq mt-5">
+                      <h3 data-bs-toggle="collapse" data-bs-target="#faqContent">
+                        참고사항 <i class="bi bi-chevron-down"></i>
+                      </h3>
+                      <div id="faqContent" class="collapse show">
+                        <p><strong>뭐라카더라(Call Keeper) 서비스란?</strong></p>
+                        <ul>
+                          <li>휴대폰 전원을 끈 상태 / 통화 중 / 통화 불능 시 걸려온 전화에 대해 미 수신된 발신번호 정보를 확인할 수 있는 서비스입니다.<br>(단, 통화중대기 서비스 미사용자에 대해서만 통화 중 뭐라카더라가 제공됨)</li>
+                          <li>미 수신된 발신번호 정보는 문자메시지(SMS), CADDERRA를 통해 확인할 수 있습니다.</li>
+                          <li>※ 뭐라카더라 수신내역 확인 ARS(15680) 서비스는 2018년 12월 31일부로 종료되었습니다.</li>
+                        </ul>
+                        
+                        <p><strong>뭐라카더라 플러스 알파의 추가 기능</strong></p>
+                        <ul>
+                          <li>통화 녹음: 발신 통화에 한해 자동으로 통화를 녹음합니다.</li>
+                          <li>녹음 데이터 관리: CADDERRA 앱/웹에서 녹음된 통화를 편리하게 관리할 수 있습니다.</li>
+                          <li>데이터 보안: 녹음된 통화는 암호화되어 안전하게 저장됩니다.</li>
+                        </ul>
+                      </div>
+                    </div>
+      
+                  <div class="cta mt-5 text-center">
+                    <h3>지금 바로 뭐라카더라 플러스 알파를 이용해보세요!</h3>
+                    <p>통화 녹음과 뭐라카더라 기능을 한 번에 즐길 수 있는 특별한 서비스입니다.</p>
+                    <a href="#" class="btn btn-primary btn-lg mt-3">서비스 신청하기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  // Bootstrap의 collapse 기능을 사용하므로 별도의 JavaScript가 필요 없습니다.
+</script>
+{% endblock %}

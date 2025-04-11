@@ -1,0 +1,215 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ======= Portfolio Section ======= -->
+<div id="portfolio" class="portfolio-area area-padding fix">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h1>&nbsp;</h1>
+            <h2>SmartHome</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row wesome-project-1 fix">
+        <!-- Start Portfolio -page -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <ul id="portfolio-flters">
+            <li data-filter=".filter-app">기기제어</li>
+            <li data-filter=".filter-card">연동 디바이스</li>
+            <li data-filter=".filter-web">제휴 브랜드</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row awesome-project-content portfolio-container">
+        <!-- 기기제어 start -->
+        <!-- 조명 -->
+        <div class="col-md-6 col-sm-6 col-xs-6 portfolio-item filter-app portfolio-item">
+          <div class="single-awesome-project">
+            <div class="awesome-img-smarthome">
+              <a href="#"><img src="{% static 'assets/img/smarthome/light.jpeg' %}" alt="" /></a>
+              <h2>&nbsp;</h2>
+              <div class="add-actions-smarthome text-center">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-6 portfolio-item filter-app portfolio-item">
+            <div class="well-middle">
+              <div class="single-well-smarthome">
+                <a href="#">
+                  <h5>&nbsp;</h5>
+                  <h4 class="sec-head-smarthome">우리집 원하는 조명을 언제,</h4>
+                  <h4 class="sec-head-smarthome">어디서든지 제어할 수 있어요.</h4>
+                </a>
+                <p>
+                    &nbsp;
+                </p>
+                <ul>
+                  <li>
+                    카더라 스마트홈 기기를 확인해보세요.
+                  </li>
+                  <a href="#about" class="btn-get-started-smarthome">바로가기</a>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <!-- 조명 end -->
+
+        <!-- 보일러 start -->
+        <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-app portfolio-item">
+            <div class="single-awesome-project">
+              <div class="awesome-img-smarthome">
+                <a href="#"><img src="{% static 'assets/img/smarthome/fire.jpg' %}" alt="" /></a>
+                <h2>&nbsp;</h2>
+                <div class="add-actions-smarthome text-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-app portfolio-item">
+              <div class="well-middle">
+                <div class="single-well-smarthome">
+                  <a href="#">
+                    <h5>&nbsp;</h5>
+                    <h4 class="sec-head-smarthome">추운 겨울 집에 들어가기 전에</h4>
+                    <h4 class="sec-head-smarthome">따뜻한 우리집을 만들어 보세요.</h4>
+                  </a>
+                  <p>
+                      &nbsp;
+                  </p>
+                  <ul>
+                    <li>
+                      카더라 스마트홈 기기를 확인해보세요.
+                    </li>
+                    <a href="#about" class="btn-get-started-smarthome">바로가기</a>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <!-- 기기제어 end -->
+  
+
+        <!-- 연동디바이스 start -->
+         
+        <div class="portfolio-item filter-card">
+            <h1>&nbsp;</h1>
+            <h4 class="sec-title-smarthome">더욱 편리한 스마트홈 연동 서비스</h4>
+        </div>
+        <!-- 1.png -->
+         <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-card">
+            <div class="single-awesome-project">
+              <div class="awesome-img-smarthome1">
+                <a href="#"><img src="{% static 'assets/img/smarthome/1.png' %}" alt="" /></a>
+                <h1>&nbsp;</h1>
+                <div class="add-actions-smarthome text-center">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-card portfolio-item">
+              <div class="well-middle">
+                <div class="single-well-smarthome">
+                  <a href="#">
+                    <h5>&nbsp;</h5>
+                    <h4 class="sec-head-smarthome">다양한 종류의 카더라 디바이스와</h4>
+                    <h4 class="sec-head-smarthome">연동해 보세요.</h4>
+                  </a>
+                  <ul>
+                    <p>집안일을 할 때나 휴대폰이 멀리 있을 때에도 음성명령으로<br>기기들을 제어할 수 있습니다.</p>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <!-- 1.png end -->
+        
+
+        <!-- 2.png -->
+        
+          
+          <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-card portfolio-item">
+              <div class="well-middle">
+                <div class="single-well-smarthome1">
+                  <a href="#">
+                    <h5>&nbsp;</h5>
+                    <h4 class="sec-head-smarthome">C전화, C맵에서도</h4>
+                    <h4 class="sec-head-smarthome">스마트홈 기능을 사용할 수 있습니다.</h4>
+                  </a>
+                  <ul>
+                    <p>운전 중 휴대폰을 조작할 수 없을 때 집에 있는 기기들을 제어하거나<br>C전화 앱의 루틴 기능으로 내가 원하는 기능들을 한 번에 제어할 수 있습니다.</p>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-card">
+                <div class="single-awesome-project">
+                  <div class="awesome-img-smarthome1">
+                    <a href="#"><img src="{% static 'assets/img/smarthome/2.png' %}" alt="" /></a>
+                    <h1>&nbsp;</h1>
+                    <div class="add-actions-smarthome text-center">
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <!-- 2.png end -->
+
+          <!-- 3.png -->
+         <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-card">
+          <div class="single-awesome-project">
+            <div class="awesome-img-smarthome1">
+              <a href="#"><img src="{% static 'assets/img/smarthome/3.png' %}" alt="" /></a>
+              <h1>&nbsp;</h1>
+              <div class="add-actions-smarthome text-center">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-12 portfolio-item filter-card portfolio-item">
+            <div class="well-middle">
+              <div class="single-well-smarthome">
+                <a href="#">
+                  <h5>&nbsp;</h5>
+                  <h4 class="sec-head-smarthome">출근 전 집안에서 내 차를 제어할 수</h4>
+                  <h4 class="sec-head-smarthome">있습니다.</h4>
+                </a>
+                <ul>
+                  <p>차에 다가가지 않아도 시동을 켜고 실내 온도를 설정할 수 있으며<br>멀리서 문을 잠그거나 위급 시 비상등 또는 경적을 울리게 할 수 있습니다.</p>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <!-- 3.png end -->
+
+        <!-- 연동디바이스 end -->
+
+        <!-- 제휴브랜드 -->
+
+        <div class="portfolio-item filter-web">
+          <h1>&nbsp;</h1>
+          <h4 class="sec-title-smarthome">앱 하나로 완성되는 완벽한 스마트홈</h4>
+          <p class="sec-li-smarthome">다양한 기기들과 아파트 단지들이 스마트홈과 함께 하고 있습니다.</p>
+          <div class="modderra-container">
+          <button class="modderra">MODDERRA</button>
+          </div>
+      </div>
+
+        <!-- 제휴브랜드 -->
+        
+        
+        
+
+      </div>
+    </div>
+  </div><!-- End Portfolio Section -->
+
+
+{% endblock %}

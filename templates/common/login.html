@@ -1,0 +1,109 @@
+<!-- login.html -->
+{% extends "base2.html" %}
+{% block content %}
+<style>
+    body {
+        font-family: 'Noto Sans KR', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .login-container {
+        max-width: 460px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .login-header {
+        text-align: center;
+        padding: 30px 0;
+    }
+    
+    .logo {
+        color: #e40000;
+        font-size: 36px;
+        margin: 0;
+    }
+    
+    .login-form {
+        padding: 0 40px 40px;
+    }
+    
+    .input-group {
+        margin-bottom: 20px;
+    }
+    
+    .input-group input {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    .login-options {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    
+    .btn-login {
+        width: 100%;
+        padding: 15px;
+        background-color: #E96B56;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    
+    .additional-options {
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .btn-signup {
+        width: 100%;
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+    }
+</style>
+&nbsp;
+<!-- login.html -->
+<div class="login-container">
+    <div class="login-header">
+        <h1 class="logo">CADDERRA</h1>
+    </div>
+    <div class="login-form">
+        <form method="post" action="{% url 'common:login' %}">
+            {% csrf_token %}
+            {% include "form_errors.html" %}
+            <div class="input-group">
+                <input type="text" name="username" id="username" placeholder="아이디" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder="비밀번호" required>
+            </div>
+            <div class="login-options">
+                <label><input type="checkbox" name="remember_me"> 아이디 저장</label>
+                <a href="#" class="forgot-password">비밀번호 찾기</a>
+            </div>
+            <button type="submit" class="btn-login">로그인</button>
+        </form>
+        <div class="additional-options">
+            <a href="{% url 'common:signup' %}" class="btn-signup">회원가입</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

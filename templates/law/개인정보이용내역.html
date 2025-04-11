@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .privacy-container {
+        max-width: 100%;
+        padding: 40px 60px;
+        background-color: #f9f9f9;
+    }
+    .sec-title-smarthome {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 0;
+        margin-bottom :50px;
+        text-align: center;
+    }
+    .sec-li-privacy {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        background-color: #E96B56;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        display: block;
+        width: 200px;
+        margin: 30px auto 0;
+        text-align: center;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<h1>&nbsp;</h1>
+<div class="privacy-container">
+    <h4 class="sec-title-smarthome">개인정보이용내역</h4>
+    <p class="sec-li-privacy">Cadderra텔레콤을 이용해주시는 고객 여러분, 반갑습니다.</p>
+    <p class="sec-li-privacy">Cadderra텔레콤은 고객의 개인정보 보호를 중요하게 생각하며, 고객의 개인정보를 보호하기 위해 항상 최선을 다해 노력합니다.</p>
+    <p class="sec-li-privacy">Cadderra텔레콤은 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 및 「개인정보 보호법」을 비롯한 개인정보 법률을 준수하고, 개인정보 처리 현황을 투명하게 알려드리고자, 아래와 같이 Cadderra텔레콤의 「개인정보 처리방침」을 수립했습니다.</p>
+    <p class="sec-li-privacy">이 내용은 Cadderra텔레콤 프라이버시 센터 홈페이지(privacy.Cadderratelecom.com)에서 언제든지 쉽고 편리하게 확인하실 수 있습니다.</p>
+    
+    <a href="{% url 'check_login' %}" class="btn btn-primary">이용내역 보기</a>
+</div>
+
+{% endblock %}

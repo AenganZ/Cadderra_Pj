@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CADDERRA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/base.css' %}" rel="stylesheet">
+</head>
+
+<!-- Popup Modal -->
+<div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cookieModalLabel">이 사이트의 쿠키에 대하여</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="cookieIntro">
+          <p>이 사이트에서 기능 및/또는 광고 쿠키 혹은 관련 기술을 사용하여 다음 목적으로 사용자 데이터를 수집할 수 있는지 여부를 선택하십시오.</p>
+          <p>자세한 내용은 <a href="{% url 'privacy' %}" class="footer-link"><strong>개인정보처리방침</strong></a>을 참조하세요.</p>
+        </div>
+        <div id="cookieSettings" style="display: none;">
+          <h6>필수 쿠키</h6>
+          <p>필수 쿠키는 사이트 동작에 필요합니다. 로그인의 세부 사항을 기록하거나 보안 로그인을 지원하는 등의 기능을 수행합니다.</p>
+          <h6>기능 쿠키</h6>
+          <p>기능 쿠키는 사회관계망 서비스에서의 상호작용을 위한 사이트 최적화 및 사용자 설정 등의 저장, 댓글 기능 등 추가 기능을 활성화합니다.</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="functionalCookies">
+            <label class="form-check-label" for="functionalCookies">기능 쿠키 허용</label>
+          </div>
+          <h6>광고 쿠키</h6>
+          <p>광고 쿠키는 사용자의 관심사에 대한 이해를 높이고 브라우저 및 기기 전반에 걸쳐 관심 기반 광고를 제공하는 데 사용됩니다. Oracle 및 제3자 광고주의 광고에 관한 정보를 제공하는 데 사용될 수 있으며, 이는 사용자에게 관련성 높은 광고를 제공하는 데 도움이 됩니다.</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="advertisingCookies">
+            <label class="form-check-label" for="advertisingCookies">광고 쿠키 허용</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" id="mainFooter">
+        <button type="button" class="btn btn-primary" id="showSettingsBtn">쿠키 설정 확인 및 변경</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="acceptAllBtn">모두 승인</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="rejectAllBtn">모두 거절</button>
+      </div>
+      <div class="modal-footer" id="settingsFooter" style="display: none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelBtn">취소</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveSettingsBtn">설정 저장</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var cookieModal = new bootstrap.Modal(document.getElementById('cookieModal'), {
+      backdrop: 'static',
+      keyboard: false
+    });
+    
+    var cookieIntro = document.getElementById('cookieIntro');
+    var cookieSettings = document.getElementById('cookieSettings');
+    var mainFooter = document.getElementById('mainFooter');
+    var settingsFooter = document.getElementById('settingsFooter');
+    
+    var showSettingsBtn = document.getElementById('showSettingsBtn');
+    var acceptAllBtn = document.getElementById('acceptAllBtn');
+    var rejectAllBtn = document.getElementById('rejectAllBtn');
+    var cancelBtn = document.getElementById('cancelBtn');
+    var saveSettingsBtn = document.getElementById('saveSettingsBtn');
+    
+    var functionalCookies = document.getElementById('functionalCookies');
+    var advertisingCookies = document.getElementById('advertisingCookies');
+    
+    function showSettings() {
+      cookieIntro.style.display = 'none';
+      cookieSettings.style.display = 'block';
+      mainFooter.style.display = 'none';
+      settingsFooter.style.display = 'flex';
+    }
+    
+    function hideSettings() {
+      cookieIntro.style.display = 'block';
+      cookieSettings.style.display = 'none';
+      mainFooter.style.display = 'flex';
+      settingsFooter.style.display = 'none';
+    }
+    
+    function saveCookiePreferences(preferences) {
+      console.log('Cookie preferences saved:', preferences);
+      localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+      
+      cookieModal.hide();
+
+      setTimeout(() => {
+        document.body.classList.remove('modal-open');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) backdrop.remove();
+      }, 300);
+    }
+    
+    showSettingsBtn.addEventListener('click', showSettings);
+    
+    acceptAllBtn.addEventListener('click', function() {
+      saveCookiePreferences({functional: true, advertising: true});
+    });
+    
+    rejectAllBtn.addEventListener('click', function() {
+      saveCookiePreferences({functional: false, advertising: false});
+    });
+    
+    saveSettingsBtn.addEventListener('click', function() {
+      saveCookiePreferences({
+        functional: functionalCookies.checked,
+        advertising: advertisingCookies.checked
+      });
+    });
+
+    // 쿠키 설정이 저장되어 있지 않은 경우에만 모달을 표시합니다.
+    if (!localStorage.getItem('cookiePreferences')) {
+      cookieModal.show();
+    }
+  });
+</script>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+      <div class="logo">
+        <h1><a href="/"><img src="{% static 'assets/img/logo.png' %}" alt="" class="img-fluid"></a></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="/#about">About</a></li>
+          <li><a class="nav-link scrollto" href="/#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="/#pricing">rate plan</a></li>
+          <li><a class="nav-link scrollto" href="/#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'common:logout' %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="nav-link">
+                <a>{{ user.username }} [로그아웃]</a>
+              </button>
+            </form>            {% else%}
+            <a class="nav-link" href="{% url "common:login" %}">로그인</a>
+            {% endif %}
+          </li>
+          <li>
+            {% if not user.is_authenticated %}
+            <a class="nav-link" href="{% url "common:signup" %}">회원가입</a>
+            {% endif %}
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  {% block content %}
+  
+  {% endblock %}
+
+  <!-- ======= Footer ======= -->
+  <footer>
+    <div class="footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="footer-content">
+              <div class="footer-head">
+                <div class="footer-logo">
+                  <h2><span>C</span>adderra</h2>
+                </div>
+
+                <p>With over 30 million subscribers, CADDERRA Telecom not only provides top-tier mobile services but also invests heavily in future technologies such as quantum cryptography and autonomous driving.</p>
+                <div class="footer-icons">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="bi bi-facebook"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="bi bi-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.instagram.com/cadderra.corp"><i class="bi bi-instagram"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>information</h4>
+                <p>
+                  The company's commitment to innovation and customer satisfaction has solidified its position as a cornerstone of South Korea's tech-savvy society and a respected name in the global telecommunications landscape.
+                </p>
+                <div class="footer-contacts">
+                  <p><span>Tel:</span> +82 010 1234 5678</p>
+                  <p><span>Email:</span> cadderratelecom@gmail.com</p>
+                  <p><span>Working Hours:</span> 9am-5pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>Workspace</h4>
+                <div class="flicker-img">
+                  <a href="{% static 'assets/img/portfolio/1.jpg' %}" data-lightbox="workspace" data-title="Workspace 1"><img src="{% static 'assets/img/portfolio/1.jpg' %}" alt="Workspace 1"></a>
+                  <a href="{% static 'assets/img/portfolio/2.jpg' %}" data-lightbox="workspace" data-title="Workspace 2"><img src="{% static 'assets/img/portfolio/2.jpg' %}" alt="Workspace 2"></a>
+                  <a href="{% static 'assets/img/portfolio/3.jpg' %}" data-lightbox="workspace" data-title="Workspace 3"><img src="{% static 'assets/img/portfolio/3.jpg' %}" alt="Workspace 3"></a>
+                  <a href="{% static 'assets/img/portfolio/4.jpg' %}" data-lightbox="workspace" data-title="Workspace 4"><img src="{% static 'assets/img/portfolio/4.jpg' %}" alt="Workspace 4"></a>
+                  <a href="{% static 'assets/img/portfolio/5.jpg' %}" data-lightbox="workspace" data-title="Workspace 5"><img src="{% static 'assets/img/portfolio/5.jpg' %}" alt="Workspace 5"></a>
+                  <a href="{% static 'assets/img/portfolio/6.jpg' %}" data-lightbox="workspace" data-title="Workspace 6"><img src="{% static 'assets/img/portfolio/6.jpg' %}" alt="Workspace 6"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-area-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div>
+              <a href="{% url 'terms' %}" class="footer-link">이용약관</a><span class="separator"> | </span>
+              <a href="{% url 'privacy' %}" class="footer-link"><strong>개인정보처리방침</strong></a><span class="separator"> | </span>
+              <a href="{% url 'privacy_details' %}" class="footer-link"><strong>개인정보 이용내역</strong></a>
+          </div>
+            <div class="copyright text-center">
+              <p>
+                &copy; Copyright <strong>CADDERRA</strong>. All Rights Reserved
+              </p>
+            </div>
+            <div class="credits">
+              <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eBusiness
+            -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
+</body>
+
+</html>
