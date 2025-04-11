@@ -1,4 +1,4 @@
-# Cadderra Telecom
+![image](https://github.com/user-attachments/assets/28dafc70-c62e-4c50-ba3b-4220a58c6dd2)# Cadderra Telecom
 
 ## 프로젝트 소개
 Cadderra Telecom은 AI 기술을 활용한 가상의 통신 기업 웹사이트입니다. Django 프레임워크로 개발되었으며, OpenAI API를 통합하여 지능형 고객 서비스를 제공합니다.
@@ -30,3 +30,11 @@ Cadderra Telecom은 AI 기술을 활용한 가상의 통신 기업 웹사이트�
 7. 서버 실행: `python manage.py runserver`
 
 환경 변수 `.env` 파일에 `OPENAI_API_KEY`를 설정해야 합니다.
+
+<p align="center">
+  <img src="![image](https://github.com/user-attachments/assets/88da9afb-7200-4f3e-8770-ac833d88e2fd)" alt="홈페이지" width="45%" />
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <img src="![image](https://github.com/user-attachments/assets/61dc3dff-58f7-47ab-9157-41b96efd2225)" alt="챗봇" width="45%" />
+</p>
+
+
