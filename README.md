@@ -1,5 +1,4 @@
 ![image](https://github.com/user-attachments/assets/28dafc70-c62e-4c50-ba3b-4220a58c6dd2)
-![image](https://github.com/user-attachments/assets/72c3abff-ca91-4fa2-8b0d-ef1299739674)
 
 # Cadderra Telecom
 
